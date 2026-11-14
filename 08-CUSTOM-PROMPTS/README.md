@@ -3,7 +3,7 @@
 Status: **Candidate prompts — not yet validated**
 Review date: 2026-11-14
 
-This shortlist prioritizes prompts that produce specific, falsifiable trading decisions for Forex and XAUUSD. It deliberately separates analysis from risk authorization. No prompt is approved for live execution.
+This shortlist prioritizes prompts that produce specific, falsifiable trading decisions for Forex and XAUUSD, with MetaTrader 5 (MT5) as the primary test and eventual automation environment. It deliberately separates analysis from risk authorization. No prompt is approved for live execution.
 
 ## Selection criteria
 
@@ -22,6 +22,14 @@ This shortlist prioritizes prompts that produce specific, falsifiable trading de
 | 2 | [Scalping execution planner](02-scalping-execution-planner.md) | Define precise scalp entry/exit rules | Directly targets the user's scalping interest |
 | 3 | [Independent risk auditor](03-independent-risk-auditor.md) | Reject unsafe or incomplete trades | Adds a separate risk gate instead of trusting the analyst |
 | 4 | [Strategy research and backtest designer](04-strategy-backtest-designer.md) | Convert ideas into reproducible tests | Prevents visual chart narratives from being mistaken for edge |
+
+## MT5-first test priorities
+
+- Use the broker's actual MT5 symbol names (including suffixes/prefixes), contract specifications, tick size/value, volume step/minimum, stops level, trading sessions, and account currency.
+- Use MT5 Strategy Tester for deterministic Expert Advisor (EA) rules, with the closest available tick modelling and variable-spread assumptions. Record modelling quality and data limitations.
+- Validate on demo before any live use. Do not let an LLM directly hold broker credentials or bypass EA-side risk checks.
+- Treat an LLM as an optional research/signal explanation layer. Keep order validation, position sizing, stop enforcement, exposure limits, and kill-switch logic deterministic in the EA.
+- Confirm whether the broker offers the intended instrument as spot FX, CFD, or another contract; XAUUSD specifications differ by broker.
 
 ## How to test
 
